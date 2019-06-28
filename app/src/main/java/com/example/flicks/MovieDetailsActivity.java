@@ -10,24 +10,25 @@ import com.example.flicks.models.Movie;
 
 import org.parceler.Parcels;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MovieDetailsActivity extends AppCompatActivity {
 
     // movie that is displayed
     Movie movie;
 
     // view objects
-    TextView tvTitle;
-    TextView tvOverview;
-    RatingBar rbVoteAverage;
+    @BindView(R.id.tvTitle) TextView tvTitle;
+    @BindView(R.id.tvOverview) TextView tvOverview;
+    @BindView(R.id.rbVoteAverage) RatingBar rbVoteAverage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
+        ButterKnife.bind(this);
         // resolve view objects
-        tvTitle = (TextView)findViewById(R.id.tvTitle);
-        tvOverview = (TextView)findViewById(R.id.tvOverview);
-        rbVoteAverage = (RatingBar)findViewById(R.id.rbVoteAverage);
 
         // unwrap the movie
         movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
